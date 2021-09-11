@@ -1,0 +1,79 @@
+PROCEDURE dot_product (var v1 , v2 : ARRAY_OF INTEGER; var ps : INTEGER)
+VAR
+ i : INTEGER ; 
+BEGIN
+ps := 0 ;
+i := 0 ;
+ IF (v1.length <> v2.length) THEN
+    Write("vectors with different size we can't calculate ps product")
+    ps := NaN ; 
+END_IF
+WHILE( i < v1.length)
+    ps := ps +(v1[i]*v2[i]) ;
+    i++ ;
+END_WHILE
+END
+ALGORITHM orth_vectors
+VAR
+    v1,v2 : ARRAY_OF INTEGER [50];
+    dot : INTEGER;
+BEGIN
+    // Read Size of elements of V1 
+    n1 := read_size();
+    // Read elements of V1
+    read_array(n1,v1);
+    // Read Size of elements of V2 
+    n2 := read_size();
+    // Read elements of V2
+    read_array(n2,v2);
+    dot_product(v1,v2,dot);
+    IF (dot = 0) THEN
+        Write("V1 and V2 are orthogonal");
+    ELSE
+        Write("V1 and V2 are not orthogonal");
+    END_IF
+END
+//**********************************************************************************************/
+
+FUNCTION dot_product(var v1 , v2 : ARRAY_OF INTEGER) : INTEGER
+VAR
+   i , ps : INTEGER
+BEGIN
+   ps := 0 ;
+    i := 0 ;
+    IF (v1.length <> v2.length) THEN
+       Write("vectors with different size we can't calculate ps product")
+       ps := NaN ; 
+    END_IF
+    WHILE( i < v1.length)
+    ps := ps +(v1[i]*v2[i]) ;
+    i++ ;
+    END_WHILE
+    RETURN ps ;
+END
+
+
+ALGORITHM orth-vectors
+VAR
+ v1 , v2 :  ARRAY_OF INTEGER[20];  
+ ps : INTEGER ;
+ n1 , n2 : INTEGER ; 
+BEGIN
+    // Read size of elements of v1
+    n1 := read_size()
+    // read elements v1 
+    read_array(n1 , v1 ) ;
+    // Read size of elements of v2
+    n2 := read_size()
+    // read elements v1 
+    read_array(n2 , v2 ) ;
+
+    ps := dot_product(v1 , v2);
+
+   IF (ps = 0) THEN
+       Write(" v1 and v2  are orthogonal")
+       ELSE
+          Write("v1 and v2  are not orthogonal")
+       END_IF
+   END_IF
+END
